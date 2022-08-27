@@ -15,6 +15,8 @@ set ignorecase
 set smartcase
 set notimeout
 set jumpoptions=stack
+set fdm=marker
+set foldmarker=//{,//}
 
 " +++++++++++++++
 " +++ Key Map +++
@@ -34,6 +36,12 @@ vnoremap <LEADER>y "+y
 
 " Normal mode <LEADER> - p to paste
 nnoremap <LEADER>p "+p
+
+" Normal mode <LEADER> - [ to flod
+nnoremap <LEADER>[ zfa{
+
+" Normal mode <LEADER> - ] to unflod
+nnoremap <LEADER>] zo
 
 " Display matches for a search pattern while you type.
 set incsearch
@@ -57,11 +65,19 @@ call plug#begin('~/.config/nvim/plugged')
   
   " file finder
   Plug 'Yggdroot/LeaderF', {'do': ':LeaderfInstallCExtension'}
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+
+  " git
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
 
   " theme
   Plug 'cateduo/vsdark.nvim'
   Plug 'itchyny/lightline.vim'
   Plug 'yuttie/inkstained-vim'
+  Plug 'sainnhe/everforest'
+  Plug 'sainnhe/gruvbox-material'
   
   " lsp
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -82,9 +98,10 @@ vmap <LEADER>cu g<
 
 " +++ preservim/nerdtree
 nnoremap <LEADER>e :NERDTreeToggle<CR>
+nnoremap <LEADER>t :NERDTreeFind<CR>
 
 " +++ Yggdroot/LeaderF +++
-let g:Lf_WindowPosition='right'
+let g:Lf_WindowPosition='popup'
 let g:Lf_PreviewInPopup=1
 let g:Lf_CommandMap = {
 \   '<C-p>': ['<C-k>'],
@@ -94,17 +111,17 @@ let g:Lf_CommandMap = {
 nmap <leader>f :Leaderf file<CR>
 nmap <silent> <C-f> :Leaderf file<CR>
 nmap <leader>b :Leaderf! buffer<CR>
-nmap <leader>F :Leaderf rg<CR>
+nmap <leader>F :Leaderf rg
 let g:Lf_DevIconsFont = "DroidSansMono Nerd Font Mono"
 
 " +++ cateduo/vsdark.nvim +++
-set termguicolors
-let g:vsdark_style = "dark"
+" set termguicolors
+" let g:vsdark_style = "dark"
 " colorscheme vsdark
 
 " +++ yuttie/inkstained-vim +++
 let g:lightline = {
-      \ 'colorscheme': 'inkstained',
+      \ 'colorscheme': 'wombat',
       \ 'component': {
       \   'readonly': '%{&readonly?"":""}',
       \ },
@@ -113,6 +130,10 @@ let g:lightline = {
       \ }
 
 " colorscheme inkstained
+
+colorscheme everforest
+" colorscheme gruvbox-material
+" set background=dark
 
 " +++ jackguo380/vim-lsp-cxx-highlight +++
 hi default link LspCxxHlSymFunction cxxFunction
@@ -136,7 +157,8 @@ let g:coc_global_extensions = [
     \ 'coc-highlight',
     \ 'coc-rust-analyzer',
     \ 'coc-vimlsp',
-    \ 'coc-json'
+    \ 'coc-json',
+    \ 'coc-tsserver'
     \ ]
 
 set signcolumn=number
@@ -199,3 +221,5 @@ nmap <silent> gb <C-o>
 " +++ puremourning/vimspector +++
 let g:vimspector_enable_mappings = 'HUMAN'
 
+" +++ neovide +++
+let g:neovide_transparency=0.8
