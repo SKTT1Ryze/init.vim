@@ -86,8 +86,6 @@ call plug#begin('~/.config/nvim/plugged')
   " highlight
   Plug 'jackguo380/vim-lsp-cxx-highlight'
 
-  " debug
-  Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust'}
 call plug#end()
 
 " +++ tomtom/tcomment_vim +++
@@ -128,9 +126,7 @@ let g:lightline = {
       \ }
 
 " colorscheme inkstained
-
 " colorscheme everforest
-
 colorscheme nord
 
 " +++ jackguo380/vim-lsp-cxx-highlight +++
@@ -216,9 +212,6 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " Go back
 nmap <silent> gb <C-o>
-
-" +++ puremourning/vimspector +++
-let g:vimspector_enable_mappings = 'HUMAN'
 
 " +++ neovide +++
 let g:neovide_transparency=0.8
