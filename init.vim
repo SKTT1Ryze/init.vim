@@ -17,6 +17,7 @@ set notimeout
 set jumpoptions=stack
 set fdm=marker
 set foldmarker=//{,//}
+set background=dark
 
 " +++++++++++++++
 " +++ Key Map +++
@@ -73,12 +74,12 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-fugitive'
 
   " theme
-  Plug 'cateduo/vsdark.nvim'
   Plug 'itchyny/lightline.vim'
   Plug 'yuttie/inkstained-vim'
   Plug 'sainnhe/everforest'
   Plug 'sainnhe/gruvbox-material'
-  
+  Plug 'arcticicestudio/nord-vim'
+
   " lsp
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -114,10 +115,7 @@ nmap <leader>b :Leaderf! buffer<CR>
 nmap <leader>F :Leaderf rg
 let g:Lf_DevIconsFont = "DroidSansMono Nerd Font Mono"
 
-" +++ cateduo/vsdark.nvim +++
-" set termguicolors
-" let g:vsdark_style = "dark"
-" colorscheme vsdark
+" ===== colorscheme =====
 
 " +++ yuttie/inkstained-vim +++
 let g:lightline = {
@@ -131,9 +129,9 @@ let g:lightline = {
 
 " colorscheme inkstained
 
-colorscheme everforest
-" colorscheme gruvbox-material
-" set background=dark
+" colorscheme everforest
+
+colorscheme nord
 
 " +++ jackguo380/vim-lsp-cxx-highlight +++
 hi default link LspCxxHlSymFunction cxxFunction
@@ -158,7 +156,8 @@ let g:coc_global_extensions = [
     \ 'coc-rust-analyzer',
     \ 'coc-vimlsp',
     \ 'coc-json',
-    \ 'coc-tsserver'
+    \ 'coc-tsserver',
+    \ 'coc-sumneko-lua'
     \ ]
 
 set signcolumn=number
